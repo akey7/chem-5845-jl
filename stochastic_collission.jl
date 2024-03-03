@@ -63,7 +63,7 @@ plot_end = plot!(velocities, pdf_end, title="Distribution at $temp_1_k K", xlabe
 
 combined_plots = plot(plot_start, plot_end, layout=(1, 2), size=(600, 300), dpi=300)
 
-savefig(combined_plots, "output/stochastic_collision.png")
+savefig(combined_plots, joinpath("output", "stochastic_collision.png"))
 
 ###########################################################
 # DONE                                                    #
