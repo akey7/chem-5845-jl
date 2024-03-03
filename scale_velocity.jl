@@ -17,5 +17,11 @@ rvs_02 = lambda .* rvs_01
 
 histogram(rvs_01, bins=100, normalize=true, alpha=0.3, color=:blue, label="Random Velocities")
 plot_01 = plot!(velocities, pdf_01, title="Distribution at $temp_k_01 K", xlabel="v (m/s)", ylabel="P(v)", linewidth=3, color=:blue, alpha=1.0, label="PDF")
-display(plot_01)
+
+histogram(rvs_02, bins=100, normalize=true, alpha=0.3, color=:orange, label="Random Velocities")
+plot_02 = plot!(velocities, pdf_02, title="Distribution at $temp_k_02 K", xlabel="v (m/s)", ylabel="P(v)", linewidth=3, color=:orange, alpha=1.0, label="PDF")
+
+combined_plots = plot(plot_01, plot_02, layout=(1, 2))
+
+display(combined_plots)
 readline()
