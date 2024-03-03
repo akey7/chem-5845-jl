@@ -30,3 +30,7 @@ Manifest.toml
 *.png
 *.pdf
 *.svg
+
+# Input and output data
+input/
+output/
