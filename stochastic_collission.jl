@@ -20,6 +20,7 @@ ensembles = zeros(Float64, steps, N)
 
 # Assign the velcoties of the first ensemble at the starting temperature
 ensembles[1, :] = maxwell_rvs(temps[1], mass_amu, N)
+println("Step 1 complete")
 
 # Go through each subsequent ensemble (represented as a row in ensembles array), 
 # randomly reassigning velocities at each step
@@ -29,7 +30,9 @@ num_atoms_to_reassign = Int64(ceil(N * fraction_atoms_reassigned_per_step))
 for row in range(2, steps)
     ensembles[row, :] = copy(ensembles[row-1, :])
     atoms_to_reassign = randperm(length(ensembles[row, :]))[1:num_atoms_to_reassign]
-    ensembles[row, atoms_to_reassign] = maxwell_rvs(temps[row], mass_amu, num_atoms_to_reassign)
+    # ensembles[row, atoms_to_reassign] = maxwell_rvs(temps[row], mass_amu, num_atoms_to_reassign)
+    ensembles[row, atoms_to_reassign] = maxwell_rvs(temp_2_k, mass_amu, num_atoms_to_reassign)
+    println("Step $row complete")
 end
 
 # Array of velocities for PDFs
