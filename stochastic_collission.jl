@@ -68,6 +68,28 @@ combined_plots = plot(plot_start, plot_end, layout=(1, 2), size=(600, 300), dpi=
 
 savefig(combined_plots, joinpath("output", "stochastic_collision.png"))
 
+println("Generating animation...")
+
+# Create new animation
+anim = Animation()
+
+# Generate each frame
+for row in 1:steps
+    histogram(ensembles[row,:], bins=100, normalize=true, alpha=0.3, color=:gray, label="Step $row")
+    plot!(velocities, pdf_start, linewidth=3, color=:blue, alpha=1.0, label="Start PDF")
+    plot!(velocities, pdf_end, title="Step $row", ylim=(0, max_y), xlabel="v (m/s)", ylabel="P(v)", linewidth=3, color=:orange, alpha=1.0, label="End PDF")
+    frame(anim)
+
+    if row % 10 == 0
+        println("Animated steps up to $row...")
+    end
+end
+
+# Write the movie
+println("Writiing animation...")
+mp4(anim, joinpath("output", "stochastic_collision.mp4"), fps=30)
+gif(anim, joinpath("output", "stochastic_collision.gif"), fps=15)
+
 ###########################################################
 # DONE                                                    #
 ###########################################################
