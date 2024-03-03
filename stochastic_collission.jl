@@ -14,6 +14,8 @@ using .MaxwellBoltzmann
 
 temp_1_k = 50.0
 temp_2_k = 300.0
+min_velocity = 0.0
+max_velocity = 2000.0
 mass_amu = 32.0
 steps = 100
 N = 1000000
@@ -49,7 +51,7 @@ end
 println("Generating before and after plot panels...")
 
 # Array of velocities for PDFs
-velocities = collect(range(0, 2000, 100))
+velocities = collect(range(min_velocity, max_velocity, 1000))
 
 # Plot the start and end distributions side-by-side
 pdf_start = maxwell_pdf(velocities, temp_1_k, mass_amu)
@@ -77,7 +79,7 @@ anim = Animation()
 for row in 1:steps
     histogram(ensembles[row,:], bins=100, normalize=true, alpha=0.3, color=:gray, label="Step $row")
     plot!(velocities, pdf_start, linewidth=3, color=:blue, alpha=1.0, label="Start PDF")
-    plot!(velocities, pdf_end, title="Step $row", ylim=(0, max_y), xlabel="v (m/s)", ylabel="P(v)", linewidth=3, color=:orange, alpha=1.0, label="End PDF")
+    plot!(velocities, pdf_end, title="Step $row", ylim=(0, max_y), xlim=(min_velocity, max_velocity), xlabel="v (m/s)", ylabel="P(v)", linewidth=3, color=:orange, alpha=1.0, label="End PDF")
     frame(anim)
 
     if row % 10 == 0
