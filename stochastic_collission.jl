@@ -55,11 +55,14 @@ velocities = collect(range(0, 2000, 100))
 pdf_start = maxwell_pdf(velocities, temp_1_k, mass_amu)
 pdf_end = maxwell_pdf(velocities, temp_2_k, mass_amu)
 
+# Calculate the upper y limit
+max_y = maximum(pdf_start) * 1.1
+
 histogram(ensembles[1,:], bins=100, normalize=true, alpha=0.3, color=:blue, label="First Step")
-plot_start = plot!(velocities, pdf_start, title="Distribution at $temp_1_k K", xlabel="v (m/s)", ylabel="P(v)", linewidth=3, color=:blue, alpha=1.0, label="PDF Start")
+plot_start = plot!(velocities, pdf_start, title="Distribution at $temp_1_k K", ylim=(0, max_y), xlabel="v (m/s)", ylabel="P(v)", linewidth=3, color=:blue, alpha=1.0, label="PDF Start")
 
 histogram(ensembles[end,:], bins=100, normalize=true, alpha=0.3, color=:orange, label="End Step")
-plot_end = plot!(velocities, pdf_end, title="Distribution at $temp_1_k K", xlabel="v (m/s)", ylabel="P(v)", linewidth=3, color=:orange, alpha=1.0, label="PDF End")
+plot_end = plot!(velocities, pdf_end, title="Distribution at $temp_2_k K", ylim=(0, max_y), xlabel="v (m/s)", ylabel="P(v)", linewidth=3, color=:orange, alpha=1.0, label="PDF End")
 
 combined_plots = plot(plot_start, plot_end, layout=(1, 2), size=(600, 300), dpi=300)
 
