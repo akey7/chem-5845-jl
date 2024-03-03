@@ -17,7 +17,7 @@ temp_2_k = 300.0
 min_velocity = 0.0
 max_velocity = 2000.0
 mass_amu = 32.0
-steps = 100
+steps = 50
 N = 1000000
 fraction_atoms_reassigned_per_step = 0.1
 
