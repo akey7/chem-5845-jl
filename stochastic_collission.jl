@@ -88,7 +88,7 @@ for row in 1:steps
 end
 
 # Write the movie
-println("Writiing animation...")
+println("Writing animation...")
 mp4(anim, joinpath("output", "stochastic_collision.mp4"), fps=30)
 gif(anim, joinpath("output", "stochastic_collision.gif"), fps=15)
 
