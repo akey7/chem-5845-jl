@@ -18,8 +18,16 @@ function maxwell_pdf(velocities, temp_k, mass_amu)
     pdf.(velocities)
 end
 
+function maxwell_rvs(temp_k, mass_amu, size)
+    sigma = scale(temp_k, mass_amu)
+    dist = sigma * Chi(3)
+    rand(dist, size)
+end
+
 velocities = collect(range(0, 2000, 100))
 ys = maxwell_pdf(velocities, 300.0, 32.0)
-pdf_plot = plot(velocities, ys, title="Maxwell-Boltzmann Distribution", xlabel="v (m/s)", ylabel="P(v)", linewidth=2, color="red")
+rvs = maxwell_rvs(300.0, 32.0, 1000000)
+histogram(rvs, bins=100, normalize=true)
+pdf_plot = plot!(velocities, ys, title="Maxwell-Boltzmann Distribution", xlabel="v (m/s)", ylabel="P(v)", linewidth=2, color="red")
 display(pdf_plot)
 readline()
