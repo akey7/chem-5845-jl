@@ -18,8 +18,8 @@ function maxwell_boltzmann_pdf(velocities, temp_k, mass_amu)
     pdf.(velocities)
 end
 
-velcoities = collect(range(0, 2000, 100))
-ys = maxwell_boltzmann_pdf(velcoities, 300.0, 32.0)
-pdf_plot = plot(velcoities, ys, title="Maxwell-Boltzmann Distribution", xlabel="v (m/s)", ylabel="P(v)", linewidth=2, color="red")
+velocities = collect(range(0, 2000, 100))
+ys = maxwell_boltzmann_pdf(velocities, 300.0, 32.0)
+pdf_plot = plot(velocities, ys, title="Maxwell-Boltzmann Distribution", xlabel="v (m/s)", ylabel="P(v)", linewidth=2, color="red")
 display(pdf_plot)
 readline()
