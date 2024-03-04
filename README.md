@@ -17,7 +17,8 @@ This will download and compile a lot of code, so have a fast connection and be p
 
 ### Scripts to be executed directly
 
-- `scale_velocity.jl`: Demosntrates warming an ensemble of 1 million O<sub>2</sub> atoms from 50 K to 300 K.
+- `scale_velocity.jl`: Demosntrates warming an ensemble of 1 million O<sub>2</sub> atoms from 50 K to 300 K by applying a scaling multiplier.
+- `stochatic_collision.jl`: Demonstrates warming a gas also, but using the stochastic collision method.
 
 ### Modules called by other scripts
 
