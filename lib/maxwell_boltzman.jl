@@ -11,14 +11,14 @@ function scale(temp_k, mass_amu)
     sqrt(2*kb*temp_k/mass_amu/kg_per_amu)
 end
 
-function maxwell_pdf(velocities, temp_k, mass_amu)
+function maxwell_pdf(speeds, temp_k, mass_amu)
     sigma = scale(temp_k, mass_amu)
 
-    function pdf(v)
-        sqrt(2/π)*(v^2*exp(-v^2/(2*sigma^2))) / sigma^3
+    function pdf(speed)
+        sqrt(2/π)*(speed^2*exp(-speed^2/(2*sigma^2))) / sigma^3
     end
 
-    pdf.(velocities)
+    pdf.(speeds)
 end
 
 function maxwell_rvs(temp_k, mass_amu, size)
