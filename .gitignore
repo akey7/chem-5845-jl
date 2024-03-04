@@ -30,6 +30,8 @@ Manifest.toml
 *.png
 *.pdf
 *.svg
+*.gif
+*.mp4
 
 # Input and output data
 input/
