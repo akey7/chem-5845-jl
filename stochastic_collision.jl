@@ -77,7 +77,7 @@ anim = Animation()
 
 # Generate each frame
 for row in 1:steps
-    histogram(ensembles[row,:], ylim=(0, max_y), xlim=(min_speed, max_speed), bins=50, normalize=true, alpha=0.3, color=:gray, label="Step $row")
+    histogram(ensembles[row,:], ylim=(0, max_y), xlim=(min_speed, max_speed), bins=50, normalize=true, alpha=0.3, color=:gray, label="Frame $row")
     plot!(speeds, pdf_start, linewidth=3, color=:blue, alpha=1.0, label="Start PDF")
     plot!(speeds, pdf_end, title="Frame $row", ylim=(0, max_y), xlim=(min_speed, max_speed), xlabel="speed (m/s)", ylabel="P(v)", linewidth=3, color=:orange, alpha=1.0, label="End PDF")
     frame(anim)
