@@ -3,12 +3,14 @@ Work I do in for CHEM-5845, Julia version.
 
 ## Dependencies
 
-This repo requires `Distributions` and `Plots`. If needed, install then like this:
+This repo requires a few packages. If needed, install then like this:
 
 ```
 import Pkg
 Pkg.add("Distributions")
 Pkg.add("Plots")
+Pkg.add("FFMPEG")
+Pkg.add("ImageMagick")
 ```
 
 This will download and compile a lot of code, so have a fast connection and be patient!
