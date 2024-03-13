@@ -1,0 +1,14 @@
+---
+title: "Generalized Born Model"
+author: "Alicia Key"
+date: "03/13/2024"
+format:
+  html:
+    code-fold: true
+editor: source
+jupyter: julia-1.10
+---
+
+```{julia}
+1 + 2
+```
