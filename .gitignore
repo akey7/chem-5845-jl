@@ -36,3 +36,9 @@ Manifest.toml
 # Input and output data
 input/
 output/
+
+# Intermediate Quarto renders
+*.html
+*.js
+*.css
+*.woff
