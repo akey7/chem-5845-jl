@@ -5,7 +5,7 @@
 using Plots
 using Random
 
-include("lib/maxwell_boltzman.jl")
+include("src/maxwell_boltzman.jl")
 using .MaxwellBoltzmann
 
 ###########################################################
