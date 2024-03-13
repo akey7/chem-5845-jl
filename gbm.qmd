@@ -10,5 +10,11 @@ jupyter: julia-1.10
 ---
 
 ```{julia}
-1 + 2
+#| label: load-modules
+#| include: false
+
+using Plots
+
+include("src/generalized_born.jl")
+using .GeneralizedBornModel
 ```
