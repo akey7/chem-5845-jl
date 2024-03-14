@@ -13,8 +13,21 @@ jupyter: julia-1.10
 #| label: load-modules
 #| include: false
 
-using Plots
+using Random
 
 include("src/generalized_born.jl")
 using .GeneralizedBornModel
+```
+
+## Initialize the model
+
+```{julia}
+Random.seed!(1234)
+model = init_model(10, 10, 5, 3)
+```
+
+## Plot the collection of circles
+
+```{julia}
+plot_model(model)
 ```
