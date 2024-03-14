@@ -14,6 +14,7 @@ jupyter: julia-1.10
 #| include: false
 
 using Random
+using Plots
 
 include("src/generalized_born.jl")
 using .GeneralizedBornModel
@@ -22,12 +23,12 @@ using .GeneralizedBornModel
 ## Initialize the model
 
 ```{julia}
-Random.seed!(1234)
-model = init_model(10, 10, 5, 3)
+# Random.seed!(1234)
+model = init_model(5.0, 5.0, 3.0, 3)
 ```
 
 ## Plot the collection of circles
 
 ```{julia}
-plot_model(model)
+scatter(model[:xs], model[:ys], markersize=10)
 ```
