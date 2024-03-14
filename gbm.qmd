@@ -23,16 +23,18 @@ using .GeneralizedBornModel
 ## Initialize the model
 
 ```{julia}
-# Random.seed!(1234)
-max_x = 5.0
-max_y = 5.0
-max_radius = 3.0
-num = 3
-model = init_model(max_x, max_y, max_radius, num)
+#| label: build-model
+#| include: true
+
+init_model(3.0, 5, 5)
 ```
 
 ## Plot the collection of circles
 
 ```{julia}
-scatter(model[:xs], model[:ys], markersize=model[:rs]*50, xlim=(0.0, max_x), ylim=(0.0, max_y))
+#| label: plot-model
+#| include: true
+#| eval: false
+
+scatter(model[:xs], model[:ys])
 ```

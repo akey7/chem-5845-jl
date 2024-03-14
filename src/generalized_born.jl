@@ -6,14 +6,13 @@ module GeneralizedBornModel
 
 using Random
 
-export init_model, plot_model
+export init_model
 
 # Model starts at origin 0, 0
-function init_model(max_x, max_y, max_radius, num)
-    rs = max_radius .* rand(num)
-    xs = max_x .* rand(num)
-    ys = max_y .* rand(num)
-    Dict(:rs => rs, :xs => xs, :ys => ys)
+function init_model(radius::Float64, row_count::Int64, col_count::Int64)
+    rows = collect(range(start=radius, stop=row_count * radius, step=radius))
+    cols = collect(range(start=radius, stop=col_count * radius, step=radius))
+    [(row, col) for row in rows, col in cols]
 end
 
 end
