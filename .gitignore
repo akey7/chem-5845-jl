@@ -42,3 +42,4 @@ output/
 *.js
 *.css
 *.woff
+*.ipynb
