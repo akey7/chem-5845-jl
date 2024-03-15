@@ -15,7 +15,7 @@ jupyter: julia-1.10
 
 using Plots
 
-include("src/generalized_born.jl")
+include("src/generalized_born_model.jl")
 using .GeneralizedBornModel
 ```
 
