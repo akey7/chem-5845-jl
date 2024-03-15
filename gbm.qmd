@@ -1,0 +1,54 @@
+---
+title: "Generalized Born Model"
+author: "Alicia Key"
+date: "03/14/2024"
+format:
+  html:
+    code-fold: true
+editor: source
+jupyter: julia-1.10
+---
+
+```{julia}
+#| label: load-modules
+#| include: false
+
+using Plots
+
+include("src/generalized_born.jl")
+using .GeneralizedBornModel
+```
+
+## Initialize the model
+
+```{julia}
+#| label: build-model
+#| include: true
+
+radius = 5.0
+row_count = 5
+col_count = 5
+
+model = init_model(radius, row_count, col_count);
+```
+
+## Plot the collection of circles
+
+```{julia}
+#| label: plot-model
+#| include: true
+#| eval: true
+
+size_x = 500
+size_y = 500
+centers_x = (model[:, 1] ./ radius) .+ radius
+centers_y = (model[:, 2] ./ radius) .+ radius
+xlim = (minimum(centers_x) - 2 * radius, maximum(centers_x) + 2 * radius)
+ylim = (minimum(centers_x) - 2 * radius, maximum(centers_y) + 2 * radius)
+size = (2 * radius + size_x, 2 * radius + size_y)
+markersize = radius * (radius * (xlim[2] - xlim[1]) / length(centers_x) / 4)
+
+println(xlim[2] - xlim[1])
+
+scatter(centers_x, centers_y, markersize=markersize, size=size, xticks=centers_x, yticks=centers_y, xlim=xlim, ylim=ylim, markercolor=:orange, markerstrokecolor=:black, legend=false)
+```
