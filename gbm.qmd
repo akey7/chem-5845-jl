@@ -43,8 +43,8 @@ model = init_model(radius, row_and_col_count, size_x, size_y);
 #| include: true
 #| eval: true
 
-centers_x = model[:, 1]
-centers_y = model[:, 2]
+centers_x = model[:grid][:, 1]
+centers_y = model[:grid][:, 2]
 
 scatter(centers_x, centers_y, markersize=radius, markercolor=:orange, markerstrokecolor=:black)
 ```
