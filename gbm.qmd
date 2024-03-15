@@ -22,38 +22,20 @@ using .GeneralizedBornModel
 ## Initialize the model
 
 ```{julia}
-#| label: build-model
+#| label: build-model-attempt-2
 #| include: true
+#| eval: true
 
-radius = 50.0
-row_count = 5
-col_count = 5
+radius = 5.0
+spacing = 10.0
+size_x = 500.0
+size_y = 500.0
 
-model = init_model(radius, row_count, col_count);
+# function init_model(radius::Float64, spacing::Float64, size_x::Float64, size_y::Float64)
+model = init_model(radius, spacing, size_x, size_y);
 ```
 
 ## Plot the collection of circles
-
-### Attempt 1
-
-```{julia}
-#| label: plot-model-attempt-1
-#| include: true
-#| eval: false
-
-size_x = 500
-size_y = 500
-centers_x = (model[:, 1] ./ radius) .+ radius
-centers_y = (model[:, 2] ./ radius) .+ radius
-xlim = (minimum(centers_x) - 2 * radius, maximum(centers_x) + 2 * radius)
-ylim = (minimum(centers_x) - 2 * radius, maximum(centers_y) + 2 * radius)
-size = (2 * radius + size_x, 2 * radius + size_y)
-markersize = radius * (radius * (xlim[2] - xlim[1]) / length(centers_x) / 4)
-
-println(xlim[2] - xlim[1])
-
-scatter(centers_x, centers_y, markersize=markersize, size=size, xticks=centers_x, yticks=centers_y, xlim=xlim, ylim=ylim, markercolor=:orange, markerstrokecolor=:black, legend=false)
-```
 
 ### Attempt 2
 
@@ -62,18 +44,8 @@ scatter(centers_x, centers_y, markersize=markersize, size=size, xticks=centers_x
 #| include: true
 #| eval: true
 
-size_multiplier = 5.0
-
 centers_x = model[:, 1]
 centers_y = model[:, 2]
-size_x = maximum(centers_x)
-size_y = maximum(centers_y)
-xlim = (minimum(centers_x) - 2 * radius, maximum(centers_x) + 2 * radius)
-ylim = (minimum(centers_x) - 2 * radius, maximum(centers_y) + 2 * radius)
-size = (size_x, size_y)
-markersize = radius
 
-println(xlim[2] - xlim[1])
-
-scatter(centers_x, centers_y, markersize=markersize, size=size, xticks=centers_x, yticks=centers_y, xlim=xlim, ylim=ylim, markercolor=:orange, markerstrokecolor=:black, legend=false)
+scatter(centers_x, centers_y)
 ```
