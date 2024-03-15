@@ -27,12 +27,11 @@ using .GeneralizedBornModel
 #| eval: true
 
 radius = 5.0
-spacing = 10.0
+row_and_col_count = 20
 size_x = 500.0
 size_y = 500.0
 
-# function init_model(radius::Float64, spacing::Float64, size_x::Float64, size_y::Float64)
-model = init_model(radius, spacing, size_x, size_y);
+model = init_model(radius, row_and_col_count, size_x, size_y);
 ```
 
 ## Plot the collection of circles
@@ -47,5 +46,5 @@ model = init_model(radius, spacing, size_x, size_y);
 centers_x = model[:, 1]
 centers_y = model[:, 2]
 
-scatter(centers_x, centers_y)
+scatter(centers_x, centers_y, markersize=radius, markercolor=:orange, markerstrokecolor=:black)
 ```
