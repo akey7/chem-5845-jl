@@ -25,7 +25,7 @@ using .GeneralizedBornModel
 #| label: build-model
 #| include: true
 
-radius = 3.0
+radius = 5.0
 row_count = 5
 col_count = 5
 
@@ -46,7 +46,7 @@ ylim = (minimum(centers_x) - 2 * radius, maximum(centers_y) + 2 * radius)
 centers_x = (model[:, 1] ./ radius) .+ radius
 centers_y = (model[:, 2] ./ radius) .+ radius
 size = (2 * radius + size_x, 2 * radius + size_y)
-markersize = radius * 5.0
+markersize = size[1] * 2 / radius
 
-scatter(centers_x, centers_y, markersize=markersize, size=size, xticks=centers_x, yticks=centers_y, xlim=xlim, ylim=ylim, markercolor=:orange, markerstrokecolor=:black, legend=false)
+scatter(centers_x, centers_y, markersize=radius, size=size, xticks=centers_x, yticks=centers_y, xlim=xlim, ylim=ylim, markercolor=:orange, markerstrokecolor=:black, legend=false)
 ```
