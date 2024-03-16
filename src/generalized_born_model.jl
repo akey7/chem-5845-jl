@@ -17,7 +17,7 @@ function init_model(radius::Float64, row_and_col_count::Int, size_x::Float64, si
     xs = [t[i] for t in grid_vector, i in 1:2]
     rs = radius .+ zeros(Float64, length(xs[:, 1]))
 
-    Dict(:xs => xs, :r => radius, :rs => rs)
+    Dict(:xs => xs, :rs => rs)
 end
 
 # # Calculate ΔG of solvation, assuming no overlap between spheres
