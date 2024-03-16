@@ -35,6 +35,20 @@ size_y = 500.0
 model = init_model(radius, charge, row_and_col_count, size_x, size_y);
 ```
 
+## Numeric result
+
+Units are Joules
+
+```{julia}
+#| label: delta-g-solv
+#| include: true
+#| eval: true
+
+ϵ_water = 80.0
+
+ΔG_solv = delta_g_solv(model, ϵ_water)
+```
+
 ## Plot the circles
 
 ```{julia}
@@ -47,18 +61,6 @@ centers_y = model[:xs][:, 2]
 markersize = model[:as]
 
 scatter(centers_x, centers_y, markersize=markersize, markercolor=:orange, markerstrokecolor=:black, label=false)
-```
-
-## The result
-
-```{julia}
-#| label: delta-g-solv
-#| include: true
-#| eval: true
-
-ϵ_water = 80
-
-delta_g_solv(model, 80.0)
 ```
 
 ## Equations for solvation
