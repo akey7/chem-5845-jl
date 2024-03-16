@@ -14,14 +14,21 @@ function init_model(radius::Float64, row_and_col_count::Int, size_x::Float64, si
     cols = collect(range(start=radius, stop=size_x, step=size_x / row_and_col_count))
     grid_matrix_1 = [(row, col) for row ∈ rows, col ∈ cols]
     grid_vector = reshape(grid_matrix_1, length(rows) * length(cols))
-    grid_matrix_2 = [t[i] for t in grid_vector, i in 1:2]
+    xs = [t[i] for t in grid_vector, i in 1:2]
 
-    Dict(:xs => grid_matrix_2, :r => radius)
+    Dict(:xs => xs, :r => radius)
 end
 
-function delta_g_solv(model)
-    grid = model[:xs]
-    pairs = [(i, j) for i ∈ eachindex(grid[:, 1]), j ∈ eachindex(grid[:, 1])]
-end
+# # Calculate ΔG of solvation, assuming no overlap between spheres
+# function delta_g_solv(model)
+#     xs = model[:xs]
+#     n = length(xs[:, 1])
+    
+#     for i ∈ 1:n-1
+#         for j ∈ i+1:n
+            
+#         end
+#     end
+# end
 
 end
