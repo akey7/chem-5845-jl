@@ -34,9 +34,23 @@ size_y = 500.0
 model = init_model(radius, row_and_col_count, size_x, size_y);
 ```
 
-## Plot the collection of circles
+## Equations for solvation
 
-### Attempt 2
+$$ \Delta G_{solv} = -{1 \over 2}\left(1-{1 \over \epsilon}\right) \sum_{i=1}^{N-1} \sum_{j=i+1}^N {q_i q_j \over r_{ij}} + \sum_{i=1}^N {q_i^2 \over 2 a_i} $$
+
+For the purposes of the `delta_g_solv()` function, this equation is split up like this:
+
+$$ a = -{1 \over 2}\left(1-{1 \over \epsilon}\right) $$
+
+$$ b = \sum_{i=1}^{N-1} \sum_{j=i+1}^N {q_i q_j \over r_{ij}} $$
+
+$$ c = \sum_{j=i+1}^N {q_i q_j \over r_{ij}} $$
+
+Which then becomes:
+
+$$ \Delta G_{solv} = ab + c $$
+
+## Plot the circles
 
 ```{julia}
 #| label: plot-model-attempt-2
