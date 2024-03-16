@@ -15,8 +15,8 @@ end
 @testset "Test GBM initialization" begin
     model = setup_test_environmment()
     
-    centers_x = model[:grid][:, 1]
-    centers_y = model[:grid][:, 2]
+    centers_x = model[:xs][:, 1]
+    centers_y = model[:xs][:, 2]
 
     @test all(isapprox.(centers_x, [5.0, 255.0, 5.0, 255.0], atol=0.01))
     @test all(isapprox.(centers_y, [5.0, 5.0, 255.0, 255.0], atol=0.01))
