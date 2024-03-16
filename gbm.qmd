@@ -26,13 +26,39 @@ using .GeneralizedBornModel
 #| include: true
 #| eval: true
 
-radius = 5.0
-charge = 1.0
+radius = 2.5
+charge = 0.8
 row_and_col_count = 20
 size_x = 500.0
 size_y = 500.0
 
 model = init_model(radius, charge, row_and_col_count, size_x, size_y);
+```
+
+## Plot the circles
+
+```{julia}
+#| label: plot-model-attempt-2
+#| include: true
+#| eval: true
+
+centers_x = model[:xs][:, 1]
+centers_y = model[:xs][:, 2]
+markersize = model[:as]
+
+scatter(centers_x, centers_y, markersize=markersize, markercolor=:orange, markerstrokecolor=:black, label=false)
+```
+
+## The result
+
+```{julia}
+#| label: delta-g-solv
+#| include: true
+#| eval: true
+
+ϵ_water = 80
+
+delta_g_solv(model, 80.0)
 ```
 
 ## Equations for solvation
@@ -50,30 +76,3 @@ $$ c = \sum_{i=1}^N {q_i^2 \over 2 a_i} $$
 Which then becomes:
 
 $$ \Delta G_{solv} = ab + c $$
-
-## Plot the circles
-
-```{julia}
-#| label: plot-model-attempt-2
-#| include: true
-#| eval: true
-
-centers_x = model[:xs][:, 1]
-centers_y = model[:xs][:, 2]
-markersize = model[:as]
-
-scatter(centers_x, centers_y, markersize=markersize, markercolor=:orange, markerstrokecolor=:black)
-```
-
-## The result
-
-```{julia}
-#| label: delta-g-solv
-#| include: true
-#| eval: true
-
-ϵ_water = 80
-
-delta_g_solv(model, 80.0)
-```
-
