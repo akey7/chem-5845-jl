@@ -44,7 +44,7 @@ $$ a = -{1 \over 2}\left(1-{1 \over \epsilon}\right) $$
 
 $$ b = \sum_{i=1}^{N-1} \sum_{j=i+1}^N {q_i q_j \over r_{ij}} $$
 
-$$ c = \sum_{j=i+1}^N {q_i q_j \over r_{ij}} $$
+$$ c = \sum_{i=1}^N {q_i^2 \over 2 a_i} $$
 
 Which then becomes:
 
