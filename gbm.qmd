@@ -49,7 +49,7 @@ println("Num points: ", row_and_col_count^2)
 println("Dimensions of system: ", size_x, " by ", size_y)
 ```
 
-## Numeric result
+## Change in free energy after solvation in medium
 
 Units are Joules
 
@@ -63,7 +63,7 @@ Units are Joules
 @printf("%.2f\n", ΔG_solv)
 ```
 
-## Plot the circles
+## Graphical Representation
 
 ```{julia}
 #| label: plot-model-attempt-2
