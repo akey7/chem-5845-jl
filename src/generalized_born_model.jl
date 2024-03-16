@@ -6,7 +6,7 @@ module GeneralizedBornModel
 
 using Random
 
-export init_model, rij
+export init_model, rij, delta_g_solv
 
 # Initialize the model
 function init_model(radius::Float64, charge::Float64, row_and_col_count::Int, size_x::Float64, size_y::Float64)
@@ -32,21 +32,20 @@ function delta_g_solv(model::Dict, epsilon::Float64)
     as = model[:as]
     qs = model[:qs]
     n = length(xs[:, 1])
-    
     a = -0.5 * (1 - 1/epsilon)
     b = 0
-
-    for i ∈ 1:n-1
-        for j ∈ i+1:n
-            b += qs[i] * qs[j] / rij(xs, i, j)
-        end
-    end
 
     function fn_c(i)
         qs[i]^2 / (2 * as[i])
     end
 
     c = sum(fn_c.(eachindex(qs)))
+
+    for i ∈ 1:n-1
+        for j ∈ i+1:n
+            b += qs[i] * qs[j] / rij(xs, i, j)
+        end
+    end
 
     a * b + c
 end
