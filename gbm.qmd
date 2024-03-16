@@ -14,6 +14,7 @@ jupyter: julia-1.10
 #| include: false
 
 using Plots
+using Printf
 
 include("src/generalized_born_model.jl")
 using .GeneralizedBornModel
@@ -35,6 +36,19 @@ size_y = 500.0
 model = init_model(radius, charge, row_and_col_count, size_x, size_y);
 ```
 
+System configuration:
+
+```{julia}
+#| label: report-configuration
+#| include: true
+#| eval: true
+
+println("Charge per point (q): ", charge)
+println("Point radius (a): ", radius)
+println("Num points: ", row_and_col_count^2)
+println("Dimensions of system: ", size_x, " by ", size_y)
+```
+
 ## Numeric result
 
 Units are Joules
@@ -45,8 +59,8 @@ Units are Joules
 #| eval: true
 
 ϵ_water = 80.0
-
 ΔG_solv = delta_g_solv(model, ϵ_water)
+@printf("%.2f\n", ΔG_solv)
 ```
 
 ## Plot the circles
