@@ -27,7 +27,7 @@ function rij(xs::Matrix{Float64}, i::Int, j::Int)
 end
 
 # Calculate ΔG of solvation, assuming no overlap between spheres
-function delta_g_solv(model::Dict, epsilon::Float64)
+function delta_g_solv(model::Dict{Symbol, Array{Float64}}, epsilon::Float64)
     xs = model[:xs]
     as = model[:as]
     qs = model[:qs]
