@@ -59,7 +59,7 @@ $$ \Delta G_{solv} = ab + c $$
 
 centers_x = model[:xs][:, 1]
 centers_y = model[:xs][:, 2]
-markersize = model[:rs]
+markersize = model[:as]
 
 scatter(centers_x, centers_y, markersize=markersize, markercolor=:orange, markerstrokecolor=:black)
 ```
