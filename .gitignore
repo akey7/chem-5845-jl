@@ -44,5 +44,5 @@ output/
 *.woff
 *.ipynb
 
-# Ignore any conda environments
+# Ignore any Conda environments
 env/
