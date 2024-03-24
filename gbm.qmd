@@ -14,41 +14,81 @@ jupyter: julia-1.10
 #| include: false
 
 using Plots
+using Printf
 
-include("src/generalized_born.jl")
+include("src/generalized_born_model.jl")
 using .GeneralizedBornModel
 ```
 
 ## Initialize the model
 
 ```{julia}
-#| label: build-model
-#| include: true
-
-radius = 5.0
-row_count = 5
-col_count = 5
-
-model = init_model(radius, row_count, col_count);
-```
-
-## Plot the collection of circles
-
-```{julia}
-#| label: plot-model
+#| label: build-model-attempt-2
 #| include: true
 #| eval: true
 
-size_x = 500
-size_y = 500
-centers_x = (model[:, 1] ./ radius) .+ radius
-centers_y = (model[:, 2] ./ radius) .+ radius
-xlim = (minimum(centers_x) - 2 * radius, maximum(centers_x) + 2 * radius)
-ylim = (minimum(centers_x) - 2 * radius, maximum(centers_y) + 2 * radius)
-size = (2 * radius + size_x, 2 * radius + size_y)
-markersize = radius * (radius * (xlim[2] - xlim[1]) / length(centers_x) / 4)
+radius = 2.5
+charge = 0.8
+row_and_col_count = 20
+size_x = 500.0
+size_y = 500.0
 
-println(xlim[2] - xlim[1])
-
-scatter(centers_x, centers_y, markersize=markersize, size=size, xticks=centers_x, yticks=centers_y, xlim=xlim, ylim=ylim, markercolor=:orange, markerstrokecolor=:black, legend=false)
+model = init_model(radius, charge, row_and_col_count, size_x, size_y);
 ```
+
+System configuration:
+
+```{julia}
+#| label: report-configuration
+#| include: true
+#| eval: true
+
+println("Charge per point (q): ", charge)
+println("Point radius (a): ", radius)
+println("Num points: ", row_and_col_count^2)
+println("Dimensions of system: ", size_x, " by ", size_y)
+```
+
+## Change in free energy after solvation in medium
+
+Units are Joules
+
+```{julia}
+#| label: delta-g-solv
+#| include: true
+#| eval: true
+
+ϵ_water = 80.0
+ΔG_solv = delta_g_solv(model, ϵ_water)
+@printf("%.2f\n", ΔG_solv)
+```
+
+## Graphical Representation
+
+```{julia}
+#| label: plot-model-attempt-2
+#| include: true
+#| eval: true
+
+centers_x = model[:xs][:, 1]
+centers_y = model[:xs][:, 2]
+markersize = model[:as]
+
+scatter(centers_x, centers_y, markersize=markersize, markercolor=:orange, markerstrokecolor=:black, label=false)
+```
+
+## Equations for solvation
+
+$$ \Delta G_{solv} = -{1 \over 2}\left(1-{1 \over \epsilon}\right) \sum_{i=1}^{N-1} \sum_{j=i+1}^N {q_i q_j \over r_{ij}} + \sum_{i=1}^N {q_i^2 \over 2 a_i} $$
+
+For the purposes of the `delta_g_solv()` function, this equation is split up like this:
+
+$$ a = -{1 \over 2}\left(1-{1 \over \epsilon}\right) $$
+
+$$ b = \sum_{i=1}^{N-1} \sum_{j=i+1}^N {q_i q_j \over r_{ij}} $$
+
+$$ c = \sum_{i=1}^N {q_i^2 \over 2 a_i} $$
+
+Which then becomes:
+
+$$ \Delta G_{solv} = ab + c $$
